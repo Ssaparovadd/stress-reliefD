@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dariga · Stress Management & Relief</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f1fb;--card:#fff;--tx:#241f3a;--mu:#6b6585;--ac:#7c5cff;--ac2:#27c4a8;--wr:#ff7a59;--bd:#e3ddf5}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15122a;--card:#211c3d;--tx:#f1eeff;--mu:#a9a3c7;--ac:#9b83ff;--ac2:#3fd8bc;--wr:#ff8f70;--bd:#383158;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15122a;--card:#211c3d;--tx:#f1eeff;--mu:#a9a3c7;--ac:#9b83ff;--ac2:#3fd8bc;--wr:#ff8f70;--bd:#383158;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;background:linear-gradient(90deg,var(--ac),var(--ac2));width:0;transition:width .4s;z-index:5}
+.slide{position:absolute;inset:0;padding:28px 22px 90px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow-y:auto;animation:in .5s}
+.slide.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.in{width:100%;max-width:760px;margin:auto}
+h1{font-size:clamp(28px,6vw,52px);margin:0 0 8px;line-height:1.05;background:linear-gradient(120deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+section.slide:first-of-type h1{font-size:14px;font-weight:600;margin:0 0 14px}
+h2{font-size:clamp(26px,5vw,40px);margin:0 0 10px}
+p{color:var(--mu);font-size:clamp(15px,2.4vw,19px);line-height:1.5;margin:6px 0}
+.tag{display:inline-block;padding:5px 14px;border-radius:99px;background:var(--card);border:1px solid var(--bd);color:var(--ac);font-weight:600;font-size:14px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:18px;margin:12px 0;text-align:left}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:11px 18px;text-decoration:none;display:inline-block;transition:.2s}
+button:hover,.btn:hover{border-color:var(--ac);transform:translateY(-2px)}
+.pri{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0}
+.bub{position:fixed;border-radius:50%;opacity:.18;animation:fl 12s infinite ease-in-out;pointer-events:none}
+@keyframes fl{50%{transform:translateY(-40px) scale(1.15)}}
+input[type=range]{width:100%;accent-color:var(--ac);height:30px}
+#face{font-size:76px;transition:.3s}
+.chip.sel{background:var(--ac);color:#fff;border-color:var(--ac)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0}
+.opt.ok{background:var(--ac2);color:#06251f;border-color:var(--ac2)}
+.opt.no{background:var(--wr);color:#fff;border-color:var(--wr)}
+#circ{width:190px;height:190px;border-radius:50%;margin:20px auto;background:radial-gradient(circle,var(--ac2),var(--ac));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px;transform:scale(.6);transition:transform 4s ease-in-out;box-shadow:0 0 60px var(--ac)}
+.g{display:flex;gap:12px;align-items:center;cursor:pointer;padding:10px;border-radius:12px}
+.g.d{opacity:.55;text-decoration:line-through}
+.g b{font-size:26px}
+.c2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.alert{border-color:var(--wr);background:color-mix(in srgb,var(--wr) 12%,var(--card))}
+nav{position:fixed;bottom:0;left:0;right:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:5;background:linear-gradient(transparent,var(--bg) 40%)}
+#dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+#dots i{width:9px;height:9px;border-radius:50%;background:var(--bd);cursor:pointer}
+#dots i.on{background:var(--ac);transform:scale(1.4)}
+a{color:var(--ac)}
+</style></head><body>
+<div id="bar"></div>
+<div class="bub" style="width:220px;height:220px;background:var(--ac);top:6%;left:-60px"></div>
+<div class="bub" style="width:160px;height:160px;background:var(--ac2);bottom:12%;right:-30px;animation-delay:-4s"></div>
+
+<section class="slide"><div class="in">
+<span class="tag">🌿 Mentorship session</span>
+<h1>Dariga</h1>
+<h2>Stress Management & Stress Relief</h2>
+<p>Learn it. Try it. Know where to find support.</p>
+<div class="row"><button class="pri" onclick="go(1)">Let’s start →</button></div>
+<p style="font-size:14px">Tip: use ← → keys or swipe the arrows below</p>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 1 · Check in</span>
+<h2>How stressed are you right now?</h2>
+<div id="face">😌</div>
+<input id="rng" type="range" min="0" max="10" value="3">
+<div class="card" id="rmsg" style="text-align:center"></div>
+<p style="font-size:14px">Just for you — nothing is saved or shared.</p>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 2 · Recognize</span>
+<h2>What does stress look like?</h2>
+<p>Tap a category.</p>
+<div class="row" id="tabs"></div>
+<div class="card" id="tabc"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 3 · Try it</span>
+<h2>Breathe with me</h2>
+<p>Inhale 4 · Hold 4 · Exhale 6. Repeat 4–5 times.</p>
+<div id="circ">Ready</div>
+<div class="row"><button class="pri" id="bb">▶ Start</button></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 4 · Ground yourself</span>
+<h2>5-4-3-2-1 technique</h2>
+<p>Tap each step as you do it. Great before exams or presentations.</p>
+<div class="card" id="gr"></div>
+<div class="card" id="gmsg" style="display:none;text-align:center">✨ Well done. Notice how your body feels now.</div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 5 · Toolkit</span>
+<h2>Pick what works for you</h2>
+<p>Tap a card to flip it.</p>
+<div class="c2" id="tk"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Step 6 · Quiz</span>
+<h2 id="qh">Quick quiz</h2>
+<div class="card" id="qb"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">💜 You are not alone</span>
+<h2>Psychological help at Nazarbayev University</h2>
+<div class="card"><b>Mental Health Hotline · On-Duty Consultant (Triage)</b>
+<p>The first point of contact. After an initial assessment, the consultant helps find the right level of support and, if needed, refers you to a psychologist, psychiatrist or other specialist.</p>
+<p>🕗 Mon–Fri, 08:30–17:30</p>
+<div class="row" style="justify-content:flex-start"><a class="btn pri" href="https://t.me/+77757593844" target="_blank" rel="noopener">Telegram +7 775 75 938 44</a><a class="btn" href="mailto:nu_counseling@nu.edu.kz">nu_counseling@nu.edu.kz</a></div>
+<p style="font-size:14px">Can’t attend? Cancel or reschedule at least 24 hours in advance via email or the on-duty counselor on Telegram.</p></div>
+<div class="c2">
+<div class="card alert"><b>🚨 Crisis support</b><p style="font-size:15px">In acute distress or if safety is a concern: during PCS hours contact the Psychological Counseling Service for urgent help. If there is an immediate threat to life, call emergency services (112) right away. Outside working hours, use the Emergency & Out-of-Hours contacts on the NU website.</p></div>
+<div class="card"><b>🔒 Confidential</b><p style="font-size:15px">Contacts with PCS are confidential. Students and employees get professional support in a safe, respectful environment.</p></div></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Final</span>
+<h1>Be kind to yourself</h1>
+<p>Stress is normal. Asking for help is a strength.</p>
+<div class="row"><button class="pri" onclick="go(7)">See support contacts</button><button onclick="go(0)">↺ Restart</button><button onclick="burst()">🎉</button></div>
+<p style="font-size:20px;margin-top:20px">Thank you! — Dariga</p>
+</div></section>
+
+<nav><button onclick="go(i-1)" aria-label="Back">←</button><div id="dots"></div><button class="pri" onclick="go(i+1)" aria-label="Next">→</button></nav>
+
+<script>
+var S=[].slice.call(document.querySelectorAll('.slide')),i=0,D=document.getElementById('dots');
+S.forEach(function(_,k){var d=document.createElement('i');d.onclick=function(){go(k)};D.appendChild(d)});
+function go(n){if(n<0||n>=S.length)return;stopB();i=n;S.forEach(function(s,k){s.classList.toggle('on',k==n);D.children[k].classList.toggle('on',k==n)});document.getElementById('bar').style.width=((n+1)/S.length*100)+'%'}
+document.addEventListener('keydown',function(e){if(e.key=='ArrowRight')go(i+1);if(e.key=='ArrowLeft')go(i-1)});
+var tx0=null;document.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX});
+document.addEventListener('touchend',function(e){if(tx0===null)return;var d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>80)go(i+(d<0?1:-1));tx0=null});
+
+var faces=['😌','😌','🙂','🙂','😐','😐','😟','😟','😣','😰','😫'],msgs=['Calm and steady. Keep your good habits!','Low stress. A short walk keeps it that way.','Manageable. Try a breathing break today.','Mild stress. Notice what is draining you.','Rising. Time for a 5-minute pause.','Moderate. Try breathing + a short walk.','Noticeable stress. Talk to a friend or your mentor.','High. Slow down; break tasks into tiny steps.','Very high. Please consider talking to a professional.','Heavy. You deserve support. See the NU help slide.','Overwhelmed. Please reach out to NU PCS today. 💜'];
+var rng=document.getElementById('rng');function upd(){var v=+rng.value;document.getElementById('face').textContent=faces[v];document.getElementById('rmsg').innerHTML='<b>'+v+'/10</b> — '+msgs[v]}rng.oninput=upd;upd();
+
+var T={'💪 Body':['Headaches, tense shoulders','Fast heartbeat, stomach issues','Tiredness or trouble sleeping','Appetite changes'],'🧠 Mind':['Racing thoughts, can’t focus','Constant worry or “what if”','Forgetfulness','Feeling overwhelmed'],'🎭 Behavior':['Procrastinating or avoiding','Irritability, snapping at people','Withdrawing from friends','Doomscrolling, skipping meals']},tb=document.getElementById('tabs'),tc=document.getElementById('tabc');
+Object.keys(T).forEach(function(k,n){var b=document.createElement('button');b.className='chip';b.textContent=k;b.onclick=function(){[].forEach.call(tb.children,function(x){x.classList.remove('sel')});b.classList.add('sel');tc.innerHTML='<ul style="margin:0;padding-left:20px;line-height:1.9">'+T[k].map(function(x){return'<li>'+x+'</li>'}).join('')+'</ul>'};tb.appendChild(b);if(!n)b.click()});
+
+var bt=[],bo=false,c=document.getElementById('circ'),bb=document.getElementById('bb');
+function ph(t,s,x,ms){bt.push(setTimeout(function(){c.textContent=t;c.style.transitionDuration=(x/1000)+'s';c.style.transform='scale('+s+')'},ms))}
+function cyc(){if(!bo)return;ph('Inhale…',1.1,4000,0);ph('Hold',1.1,4000,4000);ph('Exhale…',.6,6000,8000);bt.push(setTimeout(cyc,14000))}
+function stopB(){bo=false;bt.forEach(clearTimeout);bt=[];c.textContent='Ready';c.style.transform='scale(.6)';bb.textContent='▶ Start'}
+bb.onclick=function(){if(bo){stopB()}else{bo=true;bb.textContent='■ Stop';cyc()}};
+
+var G=[['5','things you can SEE'],['4','things you can TOUCH'],['3','things you can HEAR'],['2','things you can SMELL'],['1','thing you can TASTE']],gr=document.getElementById('gr'),gd=0;
+G.forEach(function(g){var d=document.createElement('div');d.className='g';d.innerHTML='<b>'+g[0]+'</b><span>Name '+g[0]+' '+g[1]+'</span>';d.onclick=function(){if(d.classList.toggle('d'))gd++;else gd--;document.getElementById('gmsg').style.display=gd==5?'block':'none'};gr.appendChild(d)});
+
+var K=[['🏃 Move','10–20 min walk, stretching or dancing lowers stress hormones.'],['😴 Sleep','7–9 hours. Keep a regular schedule and no screens before bed.'],['🗓 Plan','Break big tasks into small steps. Use a priority list.'],['🗣 Talk','Share with a friend, mentor or counselor. Saying it out loud helps.'],['🎨 Hobbies','Music, drawing, games — protect time for what you enjoy.'],['🚫 Say no','Boundaries protect your energy. You can’t do everything.']],tk=document.getElementById('tk');
+K.forEach(function(k){var b=document.createElement('button');b.className='card';b.style.textAlign='center';b.innerHTML='<b style="font-size:22px">'+k[0]+'</b><br><small style="color:var(--mu)">tap to flip</small>';var f=0;b.onclick=function(){f=!f;b.innerHTML=f?'<span style="color:var(--mu)">'+k[1]+'</span>':'<b style="font-size:22px">'+k[0]+'</b><br><small style="color:var(--mu)">tap to flip</small>'};tk.appendChild(b)});
+
+var Q=[['Which is a healthy way to cope with stress?',['Skipping sleep to study more','A short walk or breathing break','Ignoring it until it passes'],1],['Stress is always bad for you.',['True','False: some stress motivates, chronic stress harms'],1],['Asking a counselor for help means…',['You are weak','You are taking care of yourself','Your problems are “not serious enough”'],1]],qi=0,qs=0,qb=document.getElementById('qb');
+function q(){if(qi>=Q.length){qb.innerHTML='<div style="text-align:center"><div style="font-size:56px">'+(qs==3?'🏆':'👏')+'</div><b>'+qs+' / '+Q.length+'</b><p>'+(qs==3?'Perfect!':'Good job! Review the toolkit anytime.')+'</p><button onclick="qi=0;qs=0;q()">Retry</button></div>';return}
+var d=Q[qi];qb.innerHTML='<p><b style="color:var(--tx)">'+(qi+1)+'/'+Q.length+' · '+d[0]+'</b></p>';d[1].forEach(function(o,n){var b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=function(){[].forEach.call(qb.querySelectorAll('.opt'),function(x,m){x.disabled=true;x.classList.add(m==d[2]?'ok':'no');if(m!=d[2]&&m!=n)x.classList.remove('no')});if(n==d[2])qs++;setTimeout(function(){qi++;q()},1100)};qb.appendChild(b)})}q();
+
+function burst(){var e=['💜','✨','🌿','🎉','☀️'];for(var n=0;n<24;n++){(function(){var s=document.createElement('div');s.textContent=e[n%5];s.style.cssText='position:fixed;z-index:9;font-size:28px;left:'+Math.random()*100+'%;top:100%;transition:all 2.4s ease-out;pointer-events:none';document.body.appendChild(s);setTimeout(function(){s.style.top=(Math.random()*60)+'%';s.style.opacity=0},30);setTimeout(function(){s.remove()},2500)})()}}
+go(0);
+</script></body></html>
