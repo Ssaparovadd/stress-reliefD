@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Time Management & Productivity Workshop</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f7fb;--card:#fff;--tx:#17243a;--mu:#5d6b85;--ac:#2f7cf6;--ac2:#ff9f43;--ok:#22b58a;--wr:#ef5a6f;--bd:#dce6f2}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1829;--card:#18243b;--tx:#edf3ff;--mu:#9fb0cc;--ac:#5b9bff;--ac2:#ffb066;--ok:#35d0a4;--wr:#ff7a8d;--bd:#2b3a58;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1829;--card:#18243b;--tx:#edf3ff;--mu:#9fb0cc;--ac:#5b9bff;--ac2:#ffb066;--ok:#35d0a4;--wr:#ff7a8d;--bd:#2b3a58;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;height:100%;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+#bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;background:linear-gradient(90deg,var(--ac),var(--ac2));width:0;transition:width .4s;z-index:5}
+.slide{position:absolute;inset:0;padding:28px 20px 90px;display:none;flex-direction:column;align-items:center;text-align:center;overflow-y:auto;animation:in .5s}
+.slide.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.in{width:100%;max-width:780px;margin:auto}
+h1{font-size:clamp(32px,7vw,60px);margin:0 0 8px;line-height:1.1;background:linear-gradient(120deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(24px,5vw,36px);margin:0 0 10px}
+p{color:var(--mu);font-size:clamp(15px,2.4vw,18px);line-height:1.5;margin:6px 0}
+.tag{display:inline-block;padding:5px 14px;border-radius:99px;background:var(--card);border:1px solid var(--bd);color:var(--ac);font-weight:600;font-size:14px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin:12px 0;text-align:left}
+button,.btn{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:14px;padding:10px 16px;text-decoration:none;display:inline-block;transition:.2s}
+button:hover{border-color:var(--ac);transform:translateY(-2px)}
+.pri{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0}
+.bub{position:fixed;border-radius:50%;opacity:.15;animation:fl 12s infinite ease-in-out;pointer-events:none}
+@keyframes fl{50%{transform:translateY(-40px) scale(1.15)}}
+input[type=range]{width:100%;accent-color:var(--ac);height:26px}
+.sl{display:grid;grid-template-columns:110px 1fr 54px;gap:8px;align-items:center;font-size:15px;text-align:left}
+#stack{display:flex;height:34px;border-radius:12px;overflow:hidden;background:var(--bd);margin:10px 0}
+#stack div{transition:width .3s}
+.chip.sel{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ok{background:var(--ok)!important;color:#05261d!important;border-color:var(--ok)!important}
+.no{background:var(--wr)!important;color:#fff!important;border-color:var(--wr)!important}
+.c2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+#tm{font-size:clamp(60px,16vw,110px);font-weight:800;font-variant-numeric:tabular-nums;color:var(--ac)}
+.pk{display:flex;gap:10px;align-items:center;padding:10px;border-radius:12px;cursor:pointer;border:1px solid var(--bd);margin:6px 0;background:var(--card);text-align:left}
+.pk.on{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+nav{position:fixed;bottom:0;left:0;right:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:5;background:linear-gradient(transparent,var(--bg) 40%)}
+#dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+#dots i{width:9px;height:9px;border-radius:50%;background:var(--bd);cursor:pointer}
+#dots i.on{background:var(--ac);transform:scale(1.4)}
+</style></head><body>
+<div id="bar"></div>
+<div class="bub" style="width:220px;height:220px;background:var(--ac);top:6%;left:-60px"></div>
+<div class="bub" style="width:160px;height:160px;background:var(--ac2);bottom:12%;right:-30px;animation-delay:-4s"></div>
+
+<section class="slide"><div class="in">
+<span class="tag">⏱ Workshop</span>
+<h1>Time Management & Productivity</h1>
+<p>Balance coursework, activities, work and personal life. Plan smart, focus better, stay human.</p>
+<div class="row"><button class="pri" onclick="go(1)">Start workshop →</button></div>
+<p style="font-size:14px">Use ← → keys or the arrows below</p>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">1 · Audit</span>
+<h2>Where do your 168 hours go?</h2>
+<p>Estimate a typical week. Drag the sliders.</p>
+<div id="stack"></div>
+<div class="card" id="au"></div>
+<div class="card" id="am" style="text-align:center"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">2 · Prioritize</span>
+<h2>Eisenhower challenge</h2>
+<p>Urgent + important → Do now. Important only → Schedule. Urgent only → Delegate or limit. Neither → Delete.</p>
+<div class="card" id="eb" style="text-align:center"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">3 · Plan</span>
+<h2>Planning methods</h2>
+<p>Tap a method.</p>
+<div class="row" id="tabs"></div>
+<div class="card" id="tabc"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">4 · Focus</span>
+<h2>Pomodoro timer</h2>
+<p>Work with full focus, then rest. Try it now.</p>
+<div id="tm">25:00</div>
+<div class="row" id="pm"></div>
+<div class="row"><button class="pri" id="ps">▶ Start</button><button id="pr">↺ Reset</button></div>
+<p id="pmsg">After 4 rounds, take a longer 15–30 min break.</p>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">5 · Balance</span>
+<h2>Your life balance</h2>
+<p>Rate how satisfied you are with each area (1–10).</p>
+<div class="card" id="bl"></div>
+<div class="card" id="bm" style="text-align:center"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">6 · Beat procrastination</span>
+<h2>Tricks that work</h2>
+<p>Tap a card to flip it.</p>
+<div class="c2" id="tk"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">7 · Commit</span>
+<h2>Build your plan</h2>
+<p>Choose 3 strategies you will try this week.</p>
+<div id="pl"></div>
+<div class="card" id="pf" style="text-align:center">Pick 3 (0/3)</div>
+</div></section>
+
+<section class="slide"><div class="in">
+<span class="tag">Final</span>
+<h1>Small steps, every day</h1>
+<p>You don’t need more time. You need clearer priorities.</p>
+<div class="row"><button class="pri" onclick="go(7)">Review my plan</button><button onclick="go(0)">↺ Restart</button><button onclick="burst()">🎉</button></div>
+<div class="card" style="text-align:center"><b>Feeling overwhelmed?</b>
+<p style="font-size:15px">NU Psychological Counseling Service · Telegram +7 775 75 938 44 · nu_counseling@nu.edu.kz · Mon–Fri 08:30–17:30</p></div>
+</div></section>
+
+<nav><button onclick="go(i-1)" aria-label="Back">←</button><div id="dots"></div><button class="pri" onclick="go(i+1)" aria-label="Next">→</button></nav>
+
+<script>
+var S=[].slice.call(document.querySelectorAll('.slide')),i=0,D=document.getElementById('dots'),$=function(x){return document.getElementById(x)};
+S.forEach(function(_,k){var d=document.createElement('i');d.onclick=function(){go(k)};D.appendChild(d)});
+function go(n){if(n<0||n>=S.length)return;stopT();i=n;S.forEach(function(s,k){s.classList.toggle('on',k==n);D.children[k].classList.toggle('on',k==n)});$('bar').style.width=((n+1)/S.length*100)+'%'}
+document.addEventListener('keydown',function(e){if(e.key=='ArrowRight')go(i+1);if(e.key=='ArrowLeft')go(i-1)});
+var tx0=null;document.addEventListener('touchstart',function(e){tx0=e.touches[0].clientX});
+document.addEventListener('touchend',function(e){if(tx0===null)return;var d=e.changedTouches[0].clientX-tx0;if(Math.abs(d)>80)go(i+(d<0?1:-1));tx0=null});
+
+var A=[['Classes',15,'#2f7cf6',40],['Study',20,'#22b58a',60],['Activities',6,'#ff9f43',30],['Work',10,'#ef5a6f',40],['Sleep',49,'#8b6cf0',70],['Personal',20,'#14b8c9',60]];
+function au(){var t=0,h='';A.forEach(function(a){t+=a[1]});$('stack').innerHTML=A.map(function(a){return'<div style="width:'+(a[1]/168*100)+'%;background:'+a[2]+'"></div>'}).join('');
+var f=168-t;$('am').innerHTML=f<0?'<b style="color:var(--wr)">'+(-f)+' hours over 168!</b> Something has to give: cut, shorten or move a commitment.':'<b>'+f+' free hours</b> left per week. '+(f<15?'That is tight. Protect rest and sleep.':f<40?'A healthy buffer. Use some for rest and flexibility.':'Lots of room. Consider planning it on purpose.')+(A[4][1]<49?' <br>Tip: aim for 7+ hours of sleep (49 h/week).':'')}
+A.forEach(function(a,k){var r=document.createElement('div');r.className='sl';r.innerHTML='<span><b style="color:'+a[2]+'">●</b> '+a[0]+'</span><input type="range" min="0" max="'+a[3]+'" value="'+a[1]+'"><span>'+a[1]+' h</span>';var inp=r.children[1],o=r.children[2];inp.oninput=function(){a[1]=+inp.value;o.textContent=a[1]+' h';au()};$('au').appendChild(r)});au();
+
+var Q=[['Exam tomorrow morning',0],['Plan next semester’s courses',1],['Group chat pinging about a non-critical thing',2],['Scrolling reels for 2 hours',3],['Regular workout and sleep routine',1]],L=['Do now','Schedule','Delegate / limit','Delete'],qi=0,qs=0;
+function q(){var e=$('eb');if(qi>=Q.length){e.innerHTML='<div style="font-size:48px">'+(qs>=4?'🏆':'👏')+'</div><b>'+qs+' / '+Q.length+'</b><p>'+(qs>=4?'Great prioritizing!':'Good effort. Review and retry.')+'</p><button onclick="qi=0;qs=0;q()">Retry</button>';return}
+e.innerHTML='<p style="color:var(--tx)"><b>'+(qi+1)+'/'+Q.length+'</b> · “'+Q[qi][0]+'”</p><div class="row"></div>';var r=e.lastChild;L.forEach(function(l,n){var b=document.createElement('button');b.textContent=l;b.onclick=function(){[].forEach.call(r.children,function(x,m){x.disabled=true;if(m==Q[qi][1])x.classList.add('ok');else if(m==n)x.classList.add('no')});if(n==Q[qi][1])qs++;setTimeout(function(){qi++;q()},1100)};r.appendChild(b)})}q();
+
+var P={'🧱 Time blocking':'Give every task a slot in your calendar. A block for lectures, study, gym and rest. Plan breaks too.','🗓 Weekly review':'Spend 15 minutes each Sunday: what went well, what is due, what to move. Then plan the week.','🎯 Top 3 tasks':'Each morning pick up to 3 most important tasks. Do the hardest first.','⏪ Backward planning':'Start from the deadline and work backward. Split a big paper into small milestones with dates.'},tb=$('tabs'),tc=$('tabc');
+Object.keys(P).forEach(function(k,n){var b=document.createElement('button');b.className='chip';b.textContent=k;b.onclick=function(){[].forEach.call(tb.children,function(x){x.classList.remove('sel')});b.classList.add('sel');tc.innerHTML='<p style="color:var(--tx);margin:0">'+P[k]+'</p>'};tb.appendChild(b);if(!n)b.click()});
+
+var m=25*60,sec=m,tmr=null,ps=$('ps');
+function fm(){$('tm').textContent=('0'+Math.floor(sec/60)).slice(-2)+':'+('0'+sec%60).slice(-2)}
+function stopT(){clearInterval(tmr);tmr=null;ps.textContent='▶ Start'}
+[['Focus 25',25*60],['Break 5',5*60],['1-min demo',60]].forEach(function(x,n){var b=document.createElement('button');b.className='chip'+(n?'':' sel');b.textContent=x[0];b.onclick=function(){stopT();m=x[1];sec=m;fm();$('pmsg').textContent='';[].forEach.call($('pm').children,function(y){y.classList.remove('sel')});b.classList.add('sel')};$('pm').appendChild(b)});
+ps.onclick=function(){if(tmr){stopT();return}ps.textContent='⏸ Pause';tmr=setInterval(function(){sec--;fm();if(sec<=0){stopT();sec=m;$('pmsg').textContent='⏰ Time’s up! Great work. Now take a real break.';fm()}},1000)};
+$('pr').onclick=function(){stopT();sec=m;fm()};
+
+var B=['Academics','Activities','Work','Health & sleep','Friends & family','Fun & rest'],bv=B.map(function(){return 6});
+function bu(){var lo=0;bv.forEach(function(v,k){if(v<bv[lo])lo=k});$('bm').innerHTML='Lowest: <b>'+B[lo]+' ('+bv[lo]+'/10)</b>. '+(bv[lo]>=7?'Nicely balanced!':'Choose one small action this week to improve it.')}
+B.forEach(function(n,k){var r=document.createElement('div');r.className='sl';r.innerHTML='<span>'+n+'</span><input type="range" min="1" max="10" value="6"><span>6</span>';r.children[1].oninput=function(){bv[k]=+r.children[1].value;r.children[2].textContent=bv[k];bu()};$('bl').appendChild(r)});bu();
+
+var K=[['⏲ 2-minute rule','If it takes under 2 minutes, do it now. To start a big task, commit to just 2 minutes.'],['🐸 Eat the frog','Do your hardest task first while energy is high.'],['📵 Remove distractions','Phone in another room, notifications off, one tab open.'],['🎁 Reward yourself','Finish a block, then enjoy a snack, music or a walk.'],['🤝 Study buddy','Tell a friend your goal. Accountability boosts follow-through.'],['🚫 Say no','Protect your priorities. “Not now” is a full answer.']];
+K.forEach(function(k){var b=document.createElement('button');b.className='card';b.style.textAlign='center';var f=0,fr='<b style="font-size:20px">'+k[0]+'</b><br><small style="color:var(--mu)">tap to flip</small>';b.innerHTML=fr;b.onclick=function(){f=!f;b.innerHTML=f?'<span style="color:var(--mu)">'+k[1]+'</span>':fr};$('tk').appendChild(b)});
+
+var C=['Time blocking in my calendar','Weekly Sunday review','Top 3 tasks every morning','Pomodoro study sessions','2-minute rule','Phone-free focus time','7+ hours of sleep','Saying “no” to one thing'],sel=[];
+C.forEach(function(c){var d=document.createElement('div');d.className='pk';d.innerHTML='<span>⬜</span><span>'+c+'</span>';d.onclick=function(){var ix=sel.indexOf(c);if(ix>-1){sel.splice(ix,1);d.classList.remove('on');d.firstChild.textContent='⬜'}else if(sel.length<3){sel.push(c);d.classList.add('on');d.firstChild.textContent='✅'}pu()};$('pl').appendChild(d)});
+function pu(){$('pf').innerHTML=sel.length<3?'Pick 3 ('+sel.length+'/3)':'<b>🎯 My plan this week</b><br>'+sel.map(function(s,n){return(n+1)+'. '+s}).join('<br>')+'<p style="font-size:14px">Screenshot it or write it in your calendar.</p>'}
+
+function burst(){var e=['⏱','✨','📚','🎉','✅'];for(var n=0;n<24;n++){(function(n){var s=document.createElement('div');s.textContent=e[n%5];s.style.cssText='position:fixed;z-index:9;font-size:28px;left:'+Math.random()*100+'%;top:100%;transition:all 2.4s ease-out;pointer-events:none';document.body.appendChild(s);setTimeout(function(){s.style.top=(Math.random()*60)+'%';s.style.opacity=0},30);setTimeout(function(){s.remove()},2500)})(n)}}
+go(0);
+</script></body></html>
